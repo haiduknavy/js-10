@@ -13,6 +13,7 @@ function onInput(e){
     const value = e.target.value;
         if (value === '') {
             resetAll();
+            value.trim()
             return;
         }
     resetAll();
