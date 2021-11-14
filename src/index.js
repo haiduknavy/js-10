@@ -18,16 +18,18 @@ function onInput(e){
         }
     resetAll();
     fetchCountry(value)
-        .then(response => {
-            if (response.length > 10) {
-            Notify.info("Too many matches found. Please enter a more specific name.");
-            } else if (response.length >= 2 && response.length <= 10) {
-                renderCountries(response);
-            } else if (response.length === 1) {
-                renderCountry(response)
-            } 
-    })
+        .then(checkСonditions)
         .catch(error => {Notify.failure("Oops, there is no country with that name")})
+};
+
+function checkСonditions(response) {
+    if (response.length > 10) {
+        Notify.info("Too many matches found. Please enter a more specific name.");
+    } else if (response.length >= 2 && response.length <= 10) {
+        renderCountries(response);
+    } else if (response.length === 1) {
+                renderCountry(response)
+    };
 };
 
 function renderCountries(countries) {
